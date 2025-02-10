@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über Mich</title>
+  <style>
+    /* Basis-Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .oval-container {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    /* Standard-Oval (unsichtbar vor Animation) */
+    .oval {
+      background: white;
+      border-radius: 50px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      box-sizing: border-box;
+      opacity: 0; /* Start unsichtbar */
+    }
+    /* Bilder */
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+      margin: 10px auto;
+    }
+    /* Ausrichtung der Container */
+    .left { justify-content: flex-start; }
+    .right { justify-content: flex-end; }
+
+    /* --- Keyframe-Definitionen --- */
+    /* Desktop: Animation von der Seite */
+    @keyframes slideInFromRight {
+      from {
+        transform: translateX(100vw);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    @keyframes slideInFromLeft {
+      from {
+        transform: translateX(-100vw);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    /* Mobile: Animation von unten */
+    @keyframes slideInFromBottom {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* --- Animation anwenden, wenn die Klasse "animate" hinzugefügt wird --- */
+    .oval.animate {
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+    /* Desktop: Je nach Ausrichtung */
+    .oval.left.animate {
+      animation-name: slideInFromRight;
+    }
+    .oval.right.animate {
+      animation-name: slideInFromLeft;
+    }
+    /* Mobile: Unabhängig von links oder rechts immer von unten */
+    @media (max-width: 768px) {
+      .oval {
+        width: 90%;
+      }
+      .oval.animate {
+        animation-name: slideInFromBottom;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Willkommen bei mir, Kai Oliver Warnke</h1>
+
+    <div class="oval-container left">
+      <div class="oval left">
+        <h2>Meine Professionelle Laufbahn</h2>
+        <p>Ausbildung zur Fachkraft für Lebensmitteltechnik</p>
+        <p>Prozesstechnologe: Sterilisationsverfahren &amp; Fremdkörperdetektion</p>
+        <p>Prozessoptimierung &amp; Verdunstungskühlanlagen</p>
+        <p>Implementierung von Fremdkörperdetektion-Modulen im Prozess</p>
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQFd5jpTL5UrnA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1724056973607?e=1744243200&v=beta&t=XQibQS-fQkEMLnVdkC9Ws1PYRUMTUIktG1ZhXoDa7Q4" alt="Meine Professionelle Laufbahn">
+      </div>
+    </div>
+
+    <div class="oval-container right">
+      <div class="oval right">
+        <h2>Meine Abschlüsse</h2>
+        <p>Fachhochschule mit Schwerpunkt Technik/Elektrotechnik</p>
+        <p>Bachelor of Engineering in Lebensmitteltechnologie</p>
+      </div>
+    </div>
+
+    <div class="oval-container left">
+      <div class="oval left">
+        <h2>Hobbys</h2>
+        <p>DLRG Mitglied</p>
+        <p>Inliner fahren</p>
+        <p>Heimprojekte: Diese Website in HTML</p>
+        <p>Schach spielen auf Lichess</p>
+        <p>Fantasy-Geschichten lesen</p>
+      </div>
+    </div>
+
+    <div class="oval-container right">
+      <div class="oval right">
+        <h2>Sprachen und Fähigkeiten</h2>
+        <p>Deutsch &amp; Englisch fließend</p>
+        <p>Microsoft Office Programme</p>
+        <p>Software: Val Suite, Wonderware, SAP, Visio, Navision, Power BI, Ubuntu und mehr</p>
+        <p>Selbst beigebracht: HTML, CSS, JavaScript, Python, Spanisch</p>
+      </div>
+    </div>
+
+    <div class="more-info">
+      <h2>Mehr hierzu</h2>
+      <p>Kontaktiere mich für weitere Infos!</p>
+      <a href="https://www.linkedin.com/in/kai-warnke">Mein LinkedIn Profil</a><br>
+      <a href="https://www.xing.com/profile/KaiOliver_Warnke/web_profiles">Mein Xing Profil</a>
+    </div>
+  </div>
+
+  <script>
+    /* Beim Laden der Seite werden die Ovale nacheinander animiert */
+    document.addEventListener("DOMContentLoaded", function() {
+      const ovals = document.querySelectorAll('.oval');
+      ovals.forEach((oval, index) => {
+        setTimeout(() => {
+          oval.classList.add('animate');
+        }, index * 500); // 0,5 Sekunden Verzögerung zwischen den einzelnen Ovale
+      });
+    });
+  </script>
+</body>
+</html>
